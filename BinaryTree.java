@@ -22,7 +22,8 @@ class BinaryTree extends TreeNode {
 	}
 	
 	public static void insert(int n,TreeNode node,char ch) {
-		if(node == root) /* do nothing */
+		if(root == null)
+			root = node;
 		else {
 			TreeNode temp = root;
 			while(temp != null) {
@@ -46,16 +47,28 @@ class BinaryTree extends TreeNode {
 		while(true) {
 			System.out.print("\n  1.Enter node");
 			System.out.print("\n  2.Exit");
+			System.out.print("\n  -> ");
 			ch = sc.nextInt();
 			switch(ch) {
 				case 1:
-					System.out.print("  Enter node to insert after: ");
-					ch1 = sc.nextInt();
-					System.out.print("  Left child or right: ");
-					op = sc.nextLine.charAt(0);
-					System.out.print("\n  Enter node: ");
-					int n = sc.nextInt();
-					TreeNode node = createNode(n);
+					if(root == null) {
+						System.out.print("  Enter node: ");
+						int a = sc.nextInt();
+						createNode(a);
+					}
+					else {
+						System.out.print("  Enter node to insert after: ");
+						ch1 = sc.nextInt();
+						System.out.print("  Left child or right: ");
+						op = sc.next().charAt(0);
+						System.out.print("\n  Enter node: ");
+						int n = sc.nextInt();
+						TreeNode node = createNode(n);
+						insert(ch1,node,op);
+					}
+					
+				case 2:
+					System.exit(0);
 					
 			}
 		}
