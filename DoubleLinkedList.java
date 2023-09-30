@@ -23,8 +23,10 @@ class DoubleLinkedList extends Node {
 			}
 	}
 	
+	/* display the linked list */
 	public static void print() {
 		Node temp = head;
+		System.out.print("  DOUBLE LINKED LIST: ");
 		while(temp != null) {
 			System.out.print(temp.val);
 			if(temp.next != null)
@@ -34,6 +36,16 @@ class DoubleLinkedList extends Node {
 	}
 	
 	public static void main(String args[]) {
-		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("\n  Enter the no of nodes: ");
+		int n = sc.nextInt();
+		for(int i = 1; i <= n;i++) {
+			System.out.print("  Enter node: ");
+			int a  = sc.nextInt();
+			append(a);
+		}
+		print();
+		System.out.println();
+				
 	}
 }
