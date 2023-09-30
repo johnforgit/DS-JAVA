@@ -7,6 +7,7 @@ import java.util.Scanner;
 class DoubleLinkedList extends Node {
 	static Node head = null;
 	
+	/* add to the end of the linked list */
 	public static void append(int a) {
 			Node newNode = new Node();
 			newNode.val = a;
@@ -21,6 +22,26 @@ class DoubleLinkedList extends Node {
 				temp.next = newNode;
 				newNode.prev = temp;
 			}
+	}
+	
+	/* add in a position of the linked list */
+	public static void insert(int pos,int dat) {
+		
+		/* create a new node */
+		Node newNode = new Node();
+		newNode.val = dat;
+		newNode.prev = null;
+		newNode.next = null;
+		
+		/* insert at the specified position */
+		Node temp = head;
+		for(int i = 1;i < pos-1;i++) // move the temp node to the specified position
+			temp = temp.next;
+		newNode.next = temp.next; // rearranging the pointers
+		temp.next.prev = newNode;
+		temp.next = newNode;
+		newNode.prev = temp;
+		
 	}
 	
 	/* display the linked list */
@@ -44,6 +65,9 @@ class DoubleLinkedList extends Node {
 			int a  = sc.nextInt();
 			append(a);
 		}
+		print();
+		System.out.println();
+		insert(3,6);
 		print();
 		System.out.println();
 				
