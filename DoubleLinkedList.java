@@ -37,7 +37,7 @@ class DoubleLinkedList extends Node {
 		Node temp = head;
 		for(int i = 1;i < pos-1;i++) // move the temp node to the specified position
 			temp = temp.next;
-		newNode.next = temp.next; // rearranging the pointers
+		newNode.next = temp.next; // rearranging
 		temp.next.prev = newNode;
 		temp.next = newNode;
 		newNode.prev = temp;
