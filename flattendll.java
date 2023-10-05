@@ -44,16 +44,16 @@ class flattendll extends cnode {
 		cnode curr = Head;
 		while(curr != null) {
 			if(curr.child != null) {
-				cnode Next = curr.next; // set the next node of the current node
+				cnode Next = curr.next; // mark the next node of the current node
 				cnode Child = curr.child; // mark the child of the current node
 				curr.next = Child;
 				curr.child = null;
 				cnode temp = Child; // checking whether the child has any nodes attached to it
 				while(temp.next != null)
 					temp = temp.next;
-				temp.next = Next;
+				temp.next = Next; // travel to the end of the child and set the Next node of the linked list
 			}
-			curr = curr.next;
+			curr = curr.next; // move onto the next node
 		}
 	}
 	
