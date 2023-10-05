@@ -7,16 +7,17 @@ import java.util.Scanner;
 class flattendll extends cnode {
 	static cnode head = null;
 	
-	/* function to create a new node */
+	/* create a new node */
 	public static cnode createNode(int dat) {
 		cnode newNode = new cnode();
 		newNode.val = dat;
 		newNode.prev = null;
 		newNode.next = null;
 		newNode.child = null;
+		return newNode;
 	}
 	
-	/* function to append a node  */
+	/* append a node  */
 	public static void append(int a) {
 		cnode node = createNode(a);
 		if(head == null)
@@ -29,7 +30,7 @@ class flattendll extends cnode {
 		}
 	}
 	
-	/* function to add a child */
+	/* add a child to a node */
 	public static void addChild(int parent,int child) {
 		cnode node = createNode(child); // create the child node
 		cnode temp = head;
@@ -38,13 +39,32 @@ class flattendll extends cnode {
 		temp.child = node;
 	}
 	
-	/* function to flatten a node */
-	public static void flatten(cnode head) {
+	/* flatten the linked list */
+	public static void flatten(cnode Head) {
+		cnode curr = Head;
+		while(curr != null) {
+			if(curr.child != null) {
+				cnode Next = curr.next; // set the next node of the current node
+				cnode Child = curr.child; // mark the child of the current node
+				curr.next = Child;
+				curr.child = null;
+				cnode temp = Child; // checking whether the child has any nodes attached to it
+				while(temp.next != null)
+					temp = temp.next;
+				temp.next = Next;
+			}
+			curr = curr.next;
+		}
+	}
+	
+	/* display the linked list */
+	public static void display() {
 		cnode temp = head;
 		while(temp != null) {
-			if(temp.child != null) {
-				temp.next = child;
-			}
+			System.out.print(temp.val);
+			if(temp.next != null)
+				System.out.print("->");
+			temp = temp.next;
 		}
 	}
 	
@@ -53,10 +73,21 @@ class flattendll extends cnode {
 		System.out.print("  Enter the number of nodes: ");
 		int n = sc.nextInt();
 		for(int i = 1;i <= n;i++) {
-			System.out.print("  Enter node: ")
+			System.out.print("  Enter node: ");
 			int a  = sc.nextInt();
 			append(a);
 		}
+		display();
 		
+		/* adding children*/
+		for(int i = 1;i <= 3;i++) {
+			System.out.print("\n  Enter parent and child: ");
+			int p = sc.nextInt();
+			int c = sc.nextInt();
+			addChild(p,c);
+		}
+		flatten(head);
+		display();
+		System.out.println();
 	}
 }
